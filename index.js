@@ -11,7 +11,12 @@ import { setupPollSocket } from "./src/sockets/pollSocket.js";
 const prisma = new PrismaClient();
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:8080", 
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
 app.use(express.json());
 
 app.use("/users", userRoutes);
@@ -20,7 +25,6 @@ app.use("/polls", pollRoutes);
 const server = createServer(app);
 const io = new Server(server, { cors: { origin: "*" } });
 
-// setup poll socket + get broadcast function
 const { broadcastPollResults } = setupPollSocket(io, prisma);
 app.set("broadcastPollResults", broadcastPollResults);
 

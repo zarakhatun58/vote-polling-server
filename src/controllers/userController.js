@@ -1,4 +1,4 @@
-// src/controllers/userController.js
+
 import { hash } from "bcrypt";
 
 export async function createUser(req, res, prisma) {

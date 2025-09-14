@@ -1,4 +1,4 @@
-// src/routes/userRoutes.js
+
 import { Router } from "express";
 import { PrismaClient } from "@prisma/client";
 import { createUser } from "../controllers/userController.js";
